@@ -1,0 +1,593 @@
+$breakpoints: (
+  'xs-phone': 320px,
+  'phone': 480px,
+  'tablet': 768px,
+  'desktop': 1024px,
+  'widescreen': 1200px
+);
+
+// keywords
+$media-expressions: (
+  'screen': 'screen',
+  'print': 'print',
+  'handheld': 'handheld',
+  'landscape': '(orientation: landscape)',
+  'portrait': '(orientation: portrait)',
+  'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
+  'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)'
+);
+
+// ligatured operators ≥ ≤
+
+@import 'vendors/include-media';
+@import 'vendors/normalize';
+
+@import 'base/variables';
+@import 'base/functions';
+@import 'base/mixins';
+@import 'base/helpers';
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/forms';
+
+@font-face {
+    font-family: 'montserrat';
+    src: url('../fonts/montserrat-bold-webfont.eot');
+    src: url('../fonts/montserrat-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/montserrat-bold-webfont.woff2') format('woff2'),
+         url('../fonts/montserrat-bold-webfont.woff') format('woff'),
+         url('../fonts/montserrat-bold-webfont.ttf') format('truetype'),
+         url('../fonts/montserrat-bold-webfont.svg#montserratbold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'montserrat';
+    src: url('../fonts/montserrat-regular-webfont.eot');
+    src: url('../fonts/montserrat-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/montserrat-regular-webfont.woff2') format('woff2'),
+         url('../fonts/montserrat-regular-webfont.woff') format('woff'),
+         url('../fonts/montserrat-regular-webfont.ttf') format('truetype'),
+         url('../fonts/montserrat-regular-webfont.svg#montserratregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'roboto';
+    src: url('../fonts/roboto-regular-webfont.eot');
+    src: url('../fonts/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/roboto-regular-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-regular-webfont.woff') format('woff'),
+         url('../fonts/roboto-regular-webfont.ttf') format('truetype'),
+         url('../fonts/roboto-regular-webfont.svg#robotolight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'roboto';
+    src: url('../fonts/roboto-light-webfont.eot');
+    src: url('../fonts/roboto-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/roboto-light-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-light-webfont.woff') format('woff'),
+         url('../fonts/roboto-light-webfont.ttf') format('truetype'),
+         url('../fonts/roboto-light-webfont.svg#robotolight') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+body {
+  font-weight: 300;
+  @include media("<tablet") {font-size:14px;}
+}
+.container {
+  @extend %clearfix;
+  max-width:960px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+.btn,
+input.btn {
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 10px;
+  padding:$btn-padding;
+  background: $btn-background;
+  font-size: $btn-font-size;
+  color:$btn-color;
+  border:2px solid $red;
+  font-weight: bold;
+  font-family: $secondary-font;
+  border-radius: 20px;
+  &:hover {
+    border-color: $hover-link-color;
+  }
+}
+.btn-fill,
+input.btn-fill {
+  color:$white;
+  background-color: $red;
+  &:hover {
+    background-color: $hover-link-color;
+    color:$white;
+  }
+}
+.header {
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:10;
+  padding: 36px 0;
+  a {color:$white;}
+  .logo {
+    float: left;
+    font-size: 20px;
+    font-family: $secondary-font;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+  }
+  @include media("<desktop") {
+    .container {padding:0 50px;}
+  }
+  @include media("<tablet") {
+    padding:19px 0;
+    text-align: center;
+    .logo {
+      float: none;
+      display: block;
+      padding-top:105px;
+    }
+  }
+}
+.promo-section {
+  position: relative;
+  height:700px;
+  overflow: hidden;
+  min-height:100vh;
+  margin-bottom: 64px;
+  .bg {
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+    min-height:100%;
+    min-width:100%;
+    max-width:none;
+  }
+  .inner {
+    max-width:500px;
+    display: table;
+    margin: 0 auto;
+    height:100%;
+  }
+  .text-holder {
+    position: relative;
+    z-index: 5;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 24px;
+    color:$white;
+    padding:120px 10px 136px;
+  }
+  h1 {
+    font-size: 52px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color:$white;
+    margin-bottom: 22px;
+  }
+  .subtitle {
+    display: block;
+    margin-bottom: 34px;
+  }
+  .btn {margin: 0;}
+  @include media("<desktop") {
+   min-height:0;
+  }
+  @include media("<tablet") {
+    height:540px;
+    min-height:100vh;
+    margin-bottom: 24px;
+    .bg {height:100%}
+    .text-holder {
+      vertical-align: top;
+      padding:223px 20px 50px;
+      font-size: 18px;
+      .subtitle {
+        margin:0 20px 13px;
+      }
+      .btn {width:100%;}
+    }
+    h1 {
+      font-size: 30px;
+      margin:0 -5px 8px;
+    }
+  }
+}
+.user-menu {
+  @extend %listreset;
+  float: right;
+  margin: 1px 0 0 10px;
+  li {
+    float: left;
+    a {
+       font-family: $secondary-font;
+       font-weight: bold;
+       border: 2px solid transparent;
+       padding:8px 17px 7px;
+       border-radius: 18px;
+       display: block;
+    }
+  }
+  li a:hover,
+  li.active a {border-color: $white;}
+  @include media("<tablet") {
+    float: none;
+    margin: 0;
+    li {
+      display: inline-block;
+      vertical-align: top;
+      float: none;
+      margin:0 -2px;
+    }
+  }
+}
+.content-section {
+  text-align: center;
+  padding: 30px 0 55px;
+  h2 {margin-bottom: 34px;}
+  .subtitle {
+    font-size: 18px;
+    color:$black;
+    display: block;
+    margin:-3px 0 38px;
+  }
+  .column-holder {
+    margin:0 -10px 10px;
+    overflow: hidden;
+    .column {
+      float: left;
+      width:33.33%;
+      padding:0 10px;
+    }
+  }
+  .partner-list {
+    @extend %listreset;
+    margin:-2px -10px 22px;
+    overflow: hidden;
+    color:$gray;
+    li {
+      float: left;
+      width:25%;
+      padding:0 10px;
+    }
+    .photo {
+      position: relative;
+      width:120px;
+      margin: 0 auto 16px;
+      img {border-radius: 50%;}
+    }
+    .icon-holder {
+      @include size(40px);
+      position: absolute;
+      bottom: -2px;
+      right: -5px;
+      border: 4px solid #fff;
+      border-radius: 50%;
+      &.red {background-color: $red;}
+      &.green {background-color: $green;}
+      &.orange {background-color: $orange;}
+      &.blue {background-color: $blue;}
+      .icon {
+        @include size(32px);
+        padding:6px;
+        fill:$white;
+      }
+    }
+    h3 {margin-bottom: 12px;}
+    @include media("<desktop") {
+      max-width:512px;
+      margin:-2px auto -24px;
+      li {
+        width:50%;
+        margin-bottom: 44px;
+      }
+    }
+  }
+  @include media("<tablet") {
+    padding:10px 0 20px;
+    h2 {margin-bottom: 13px;}
+    .btn {width:100%;}
+    .subtitle {margin-bottom: 15px;}
+    .column-holder {
+      margin-bottom: -6px;
+      .column {
+        width:100%;
+        margin-bottom: 10px;
+      }
+    }
+    .partner-list {
+      margin-bottom: 0;
+      li {
+        width:100%;
+        padding:0 40px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+.carousel {
+  position: relative;
+  .bg-cover {
+    @include size(100%);
+    position: absolute;
+    top:0;
+    left:0;
+    overflow: hidden;
+    z-index:-2;
+    max-width:100%;
+    img {
+      max-width:none;
+    }
+  }
+  .mask {
+    position: relative;
+    width:100%;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .slideset {
+    width:9999px;
+    float: left;
+  }
+  .slide {
+    float: left;
+    width:300px;
+    height:400px;
+    display: table;
+    position: relative;
+    &:after {
+      @include size(100%);
+      position: absolute;
+      top:0;
+      left:0;
+      content:"";
+      background-image: linear-gradient(to bottom , rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
+    }
+    .text {
+      display: table-cell;
+      padding:16px 19px;
+      vertical-align: bottom;
+      text-align: left;
+      color:$light-gray;
+      position: relative;
+      z-index:2;
+      p {margin: 0;}
+      h3 {
+        font-size: 24px;
+        color: $white;
+        margin-bottom: 9px;
+      }
+      .step {
+        color:$white;
+        background-color: $red;
+        font-size: 10px;
+        text-transform: uppercase;
+        font-family: $secondary-font;
+        padding:4px 13px;
+        letter-spacing: 2px;
+        border-radius: 10px;
+        display: inline-block;
+        vertical-align: top;
+        margin-bottom: 14px;
+      }
+    }
+  }
+  .btn-prev,
+  .btn-next {
+    position: absolute;
+    top:50%;
+    margin-top: -47px;
+    z-index:10;
+    opacity:.5;
+    &:hover {opacity:.8}
+    &.disabled {
+      opacity:.2;
+      pointer-events:none;
+    }
+    .icon {
+      fill:$white;
+      width:30px;
+      height:55px;
+    }
+  }
+  .btn-prev {left:20px;}
+  .btn-next {right:20px;}
+  @include media("<desktop") {
+    .btn-prev,
+    .btn-next {
+      top:40px;
+      margin-top: 0;
+    }
+    .btn-prev {left:10px;}
+    .btn-next {right:10px;}
+  }
+  @include media("<tablet") {
+    .slide {height:240px;}
+    .btn-prev,
+    .btn-next {
+      top:20px;
+      .icon {
+        width:20px;
+        height:36px;
+      }
+    }
+  }
+}
+.activities {
+  margin:0 -10px -10px;
+  overflow: hidden;
+  @include media("<tablet") {
+    margin: 0 0 -7px;
+  }
+}
+.activity-block {
+  float: left;
+  width:33.33%;
+  padding:0 10px;
+  margin-bottom: 20px;
+  &.wide {width:66.66%;}
+  > a {
+    @include v-align;
+    position: relative;
+    z-index:1;
+    background-color: $black;
+    height:310px;
+    display: block;
+    border-radius: 4px;
+    overflow: hidden;
+    padding: 40px;
+    &:hover .bg {opacity:.9;}
+  }
+  .bg-cover {
+    @extend %transition;
+    @include size(100%);
+    position: absolute;
+    top:0;
+    left:0;
+    overflow: hidden;
+    opacity:.7;
+    z-index:-1;
+    max-width:100%;
+    img {
+      max-width:none;
+    }
+  }
+  h3 {
+    font-size: 22px;
+    color:$white;
+    margin: 0;
+  }
+  @include media("<desktop") {
+    > a {padding:15px;}
+  }
+  @include media("<tablet") {
+    width:100%;
+    padding: 0 0 40%;
+    margin-bottom: 10px;
+    position: relative;
+    > a {
+      position: absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height: auto;
+      bottom:0;
+    }
+    .bg-cover img {
+      top:30%;
+      position: relative;
+    }
+    &.wide {
+      width:100%;
+      .bg-cover img {top:0;}
+    }
+  }
+}
+.search-form {
+  margin-bottom: 44px;
+  input[type="text"] {width:240px;}
+  .btn {margin:0 0 0 7px;}
+  @include media("<tablet") {
+    margin:0 8px 20px;
+    input[type="text"] {
+      display: block;
+      width:100%;
+      margin-bottom: 10px;
+    }
+    .btn {
+      width:100%;
+      margin: 0;
+    }
+  }
+}
+.footer {
+  border-top:4px solid $red;
+  padding:37px 0 30px;
+  .logo {
+    float: left;
+    width:23.4%;
+    margin-right: 20px;
+    font-size: 16px;
+    line-height: 17px;
+    font-family: $secondary-font;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+  .links {
+    @extend %listreset;
+    float: left;
+    width:15%;
+    margin-right: 20px;
+    li {margin-bottom: 7px;}
+    strong {
+      display: block;
+      font-family: $secondary-font;
+      padding-bottom: 5px;
+      a {color:$black;}
+    }
+    a {color:$gray;}
+    a:hover {text-decoration: underline;}
+  }
+  .by {
+    float: right;
+    text-align: right;
+    font-size: 10px;
+    text-transform: uppercase;
+    color:$light-gray;
+    font-family: $secondary-font;
+    strong {
+      display: block;
+      margin-bottom: 7px;
+      letter-spacing: 1px;
+    }
+  }
+  @include media("<desktop") {
+    .container {padding:0 40px;}
+    .logo {width:30%}
+    .links {width:22%}
+  }
+  @include media("<tablet") {
+    text-align: center;
+    padding:17px 0;
+    .logo {
+      display: block;
+      float: none;
+      margin: 0 0 13px;
+      width:auto;
+    }
+    .links {
+      float: none;
+      width:auto;
+      margin: 0 0 13px;
+      li {
+        margin: 0 5px;
+        display: inline-block;
+        vertical-align: top;
+        &:first-child {
+          display: block;
+        }
+      }
+      strong {padding-bottom: 2px;}
+    }
+    .by {
+       display: block;
+      float: none;
+      text-align: center;
+      margin-top: -2px;
+    }
+  }
+}
